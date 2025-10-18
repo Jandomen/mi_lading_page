@@ -34,6 +34,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-purple-50 via-blue-50 to-indigo-100">
+      {/* Hero */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -72,6 +73,7 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Características */}
       <motion.section
         initial="hidden"
         animate="visible"
@@ -123,96 +125,97 @@ export default function Home() {
         </div>
       </motion.section>
 
-<motion.section
-  initial="hidden"
-  animate="visible"
-  variants={stagger}
-  className="py-20 px-4 bg-gradient-to-r from-purple-50 to-blue-50"
->
-  <div className="max-w-5xl mx-auto">
-    <motion.h2
-      variants={fadeIn}
-      className="text-4xl font-black text-center text-purple-800 mb-16"
-    >
-      Lo que dicen nuestros usuarios
-    </motion.h2>
-    <div className="grid md:grid-cols-2 gap-8">
-      {[
-        {
-          quote: 'Cambió mi rutina matutina. ¡Más calmado que nunca!',
-          author: 'Ana López',
-        },
-        {
-          quote: 'Fácil de usar y efectiva. Recomendado 100%.',
-          author: 'Carlos Ruiz',
-        },
-      ].map((testimonial, index) => (
-        <motion.blockquote
-          key={index}
+      {/* Testimonios */}
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={stagger}
+        className="py-20 px-4 bg-gradient-to-r from-purple-50 to-blue-50"
+      >
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            variants={fadeIn}
+            className="text-4xl font-black text-center text-purple-800 mb-16"
+          >
+            Lo que dicen nuestros usuarios
+          </motion.h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                quote: 'Cambió mi rutina matutina. ¡Más calmado que nunca!',
+                author: 'Ana López',
+              },
+              {
+                quote: 'Fácil de usar y efectiva. Recomendado 100%.',
+                author: 'Carlos Ruiz',
+              },
+            ].map((testimonial, index) => (
+              <motion.blockquote
+                key={index}
+                variants={fadeIn}
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-purple-400 transition"
+              >
+                <p className="text-purple-700 text-lg font-medium mb-4">
+                  &quot;{testimonial.quote}&quot;
+                </p>
+                <cite className="text-purple-900 font-bold text-base">
+                  - {testimonial.author}
+                </cite>
+              </motion.blockquote>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA suscripción */}
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        className="py-20 px-4 text-center bg-gradient-to-r from-purple-700 via-purple-500 to-blue-400 text-white relative overflow-hidden"
+      >
+        <motion.h2 variants={fadeIn} className="text-4xl font-black mb-6">
+          Únete a miles de meditadores
+        </motion.h2>
+        <motion.p
           variants={fadeIn}
-          className="bg-white p-8 rounded-xl shadow-lg hover:shadow-purple-400 transition"
+          className="text-xl font-semibold mb-10 max-w-md mx-auto"
         >
-          <p className="text-purple-700 text-lg font-medium mb-4">
-            "{testimonial.quote}"
-          </p>
-          <cite className="text-purple-900 font-bold text-base">
-            - {testimonial.author}
-          </cite>
-        </motion.blockquote>
-      ))}
-    </div>
-  </div>
-</motion.section>
+          Suscríbete para tips semanales y un descuento del 20%.
+        </motion.p>
+        <motion.form
+          variants={fadeIn}
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-md mx-auto flex gap-3"
+        >
+          <input
+            {...register('email')}
+            type="email"
+            placeholder="Tu email"
+            className="flex-1 px-5 py-4 rounded-full text-gray-900 font-medium focus:outline-none focus:ring-4 focus:ring-purple-300 shadow-lg"
+          />
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            animate={{ scale: [1, 1.02, 1], transition: { repeat: Infinity, duration: 1.5 } }}
+            type="submit"
+            className="bg-pink-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-pink-400 transition"
+          >
+            Suscribirme
+          </motion.button>
+        </motion.form>
+        {errors.email && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-red-200 font-medium mt-3"
+          >
+            {errors.email.message}
+          </motion.p>
+        )}
+      </motion.section>
 
-
-<motion.section
-  initial="hidden"
-  animate="visible"
-  variants={fadeIn}
-  className="py-20 px-4 text-center bg-gradient-to-r from-purple-700 via-purple-500 to-blue-400 text-white relative overflow-hidden"
->
-  <motion.h2 variants={fadeIn} className="text-4xl font-black mb-6">
-    Únete a miles de meditadores
-  </motion.h2>
-  <motion.p
-    variants={fadeIn}
-    className="text-xl font-semibold mb-10 max-w-md mx-auto"
-  >
-    Suscríbete para tips semanales y un descuento del 20%.
-  </motion.p>
-  <motion.form
-    variants={fadeIn}
-    onSubmit={handleSubmit(onSubmit)}
-    className="max-w-md mx-auto flex gap-3"
-  >
-    <input
-      {...register('email')}
-      type="email"
-      placeholder="Tu email"
-      className="flex-1 px-5 py-4 rounded-full text-gray-900 font-medium focus:outline-none focus:ring-4 focus:ring-purple-300 shadow-lg"
-    />
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      animate={{ scale: [1, 1.02, 1], transition: { repeat: Infinity, duration: 1.5 } }}
-      type="submit"
-      className="bg-pink-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-pink-400 transition"
-    >
-      Suscribirme
-    </motion.button>
-  </motion.form>
-  {errors.email && (
-    <motion.p
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="text-red-200 font-medium mt-3"
-    >
-      {errors.email.message}
-    </motion.p>
-  )}
-</motion.section>
-
-
+      {/* Footer */}
       <motion.footer
         initial="hidden"
         animate="visible"
